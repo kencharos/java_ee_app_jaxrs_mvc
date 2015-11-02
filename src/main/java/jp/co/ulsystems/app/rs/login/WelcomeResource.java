@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import jp.co.ulsystems.app.rs.Model;
 import org.glassfish.jersey.server.mvc.Template;
 
 /**
@@ -17,8 +18,8 @@ public class WelcomeResource {
 
     @GET
     @Template(name = "/welcome")
-    public Map<String, Object> notifications() {
-        Map<String, Object> model = new HashMap<>();
+    public Model notifications() {
+        Model model = new Model();
         model.put("notifications", Arrays.asList("This is JAX-RS app", "note.."));
         return model;
     }

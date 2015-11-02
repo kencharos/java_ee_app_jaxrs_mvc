@@ -12,12 +12,11 @@
 <%@attribute name="labelClass"%>
 
 <%-- any content can be specified here e.g.: --%>
-<div id="fg_${key}" class="form-group  ${model ne null  ? 'has-error' : ''}">
+<div id="fg_${key}" class="form-group  ${model.hasErrors(key)  ? 'has-error' : ''}">
     <label for="${key}" class="control-label ${labelClass}" >${label}</label>
     <jsp:doBody />
     <span class="text-danger">
-    <c:forEach var="e" items="${model}">
-        <c:if test="${e.path.contains(key)}">${e.message}(${e.invalidValue})</c:if>
-    </c:forEach>
+    <c:if test="${model.hasErrors(key)}">${model.getErrors()[key]}</c:if>
+    </span>
         
 </div>

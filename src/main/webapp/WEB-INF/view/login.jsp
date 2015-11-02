@@ -9,13 +9,15 @@
     <form action="login" styleClass="form" method="POST">
         <div class="form-group">
             <tag:bs_input key="id" label="ID">
-                <input type="text" id="id" name="id" class="form-control" />
+                <input type="text" id="id" name="id" class="form-control" value="${model.form.id}"
+                       placeholder="user1"/>
             </tag:bs_input>
             <tag:bs_input key="password" label="password">
-                <input type="password" id="password" name="password" class="form-control" />
+                <input type="password" id="password" name="password" class="form-control" value="${model.form.password}" 
+                       placeholder="user1"/>
             </tag:bs_input>
         </div>
-        <input type="submit" value="Login" styleClass="btn btn-primary"/>
+        <input type="submit" value="Login" class="btn btn-primary"/>
     </form>
     
 </c:param>

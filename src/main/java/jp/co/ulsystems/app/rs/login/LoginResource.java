@@ -22,6 +22,8 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
+import jp.co.ulsystems.app.rs.ApplicationException;
+import jp.co.ulsystems.app.rs.Model;
 import org.glassfish.jersey.server.mvc.ErrorTemplate;
 import org.glassfish.jersey.server.mvc.Template;
 
@@ -39,9 +41,9 @@ public class LoginResource {
 
     @GET
     @Template(name = "/login")
-    public Map<String, String> init() {
+    public Model init() {
         System.out.println("login init call,");
-        return new HashMap<>();
+        return new Model();
     }
     
     /**
@@ -58,7 +60,6 @@ public class LoginResource {
       
         try {
             req.getSession(true);
-            System.out.println("login:" + loginReq.getId());
             req.login(loginReq.getId(), loginReq.getPassword());
             req.getSession().setAttribute("user", req.getUserPrincipal().getName());
             
@@ -67,7 +68,7 @@ public class LoginResource {
             return Response.seeOther(builder.build()).build();
         } catch(ServletException e) {
             
-            throw new WebApplicationException(e);
+            throw new ApplicationException("id", "invalid id or password.");
         }
     }
     
