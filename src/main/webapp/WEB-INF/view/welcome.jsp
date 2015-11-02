@@ -9,7 +9,7 @@
     
     <h2>Notificaions</h2>
     <ul>
-        <c:forEach  var="note" items="${it.notifications}">
+        <c:forEach  var="note" items="${model.notifications}">
             <li>${note}</li>
         </c:forEach>
     </ul>

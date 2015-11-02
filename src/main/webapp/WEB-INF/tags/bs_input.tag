@@ -13,11 +13,11 @@
 
 <%-- any content can be specified here e.g.: --%>
 <div id="fg_${key}" class="form-group  ${model ne null  ? 'has-error' : ''}">
-    <label for="${key}" class="control-label ${labelClass}" >${label} ${model.getClass()}</label>
+    <label for="${key}" class="control-label ${labelClass}" >${label}</label>
     <jsp:doBody />
     <span class="text-danger">
-        <c:forEach var="e" items="${model}">
-            <c:if test="${e.path.contains(key)}">${e.message}(${e.invalidValue})</c:if>
-        </c:forEach>
+    <c:forEach var="e" items="${model}">
+        <c:if test="${e.path.contains(key)}">${e.message}(${e.invalidValue})</c:if>
+    </c:forEach>
         
 </div>

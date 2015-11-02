@@ -11,12 +11,12 @@ import javax.ws.rs.FormParam;
 public class LoginRequest {
 
     @NotNull
-    @Size(min = 1)
+    @Size(min = 3)
     @FormParam("id")
     private String id;
     
     @NotNull
-    @Size(min = 1)
+    @Size(min = 3)
     @FormParam("password")
     private String password;
 

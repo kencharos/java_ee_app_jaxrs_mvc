@@ -5,6 +5,8 @@
  */
 package jp.co.ulsystems.app.rs.login;
 
+import java.util.HashMap;
+import java.util.Map;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -37,8 +39,9 @@ public class LoginResource {
 
     @GET
     @Template(name = "/login")
-    public String init() {
-        return "";
+    public Map<String, String> init() {
+        System.out.println("login init call,");
+        return new HashMap<>();
     }
     
     /**
