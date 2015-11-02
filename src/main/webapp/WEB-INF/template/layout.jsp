@@ -24,7 +24,6 @@
         </nav>
         
         <div class="container" id="main_content">
-            <html:errors/>
            ${param.content}
         </div>
         

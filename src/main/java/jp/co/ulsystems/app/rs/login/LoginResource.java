@@ -24,6 +24,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import jp.co.ulsystems.app.rs.ApplicationException;
 import jp.co.ulsystems.app.rs.Model;
+import jp.co.ulsystems.app.rs.SaveForm;
 import org.glassfish.jersey.server.mvc.ErrorTemplate;
 import org.glassfish.jersey.server.mvc.Template;
 
@@ -55,8 +56,7 @@ public class LoginResource {
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @ErrorTemplate(name = "/login")
-    @Valid
-    public Response login(@Valid @BeanParam LoginRequest loginReq) {
+    public Response login(@Valid @BeanParam @SaveForm LoginRequest loginReq) {
       
         try {
             req.getSession(true);

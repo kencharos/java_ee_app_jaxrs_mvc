@@ -9,11 +9,11 @@
     <form action="login" styleClass="form" method="POST">
         <div class="form-group">
             <tag:bs_input key="id" label="ID">
-                <input type="text" id="id" name="id" class="form-control" value="${model.form.id}"
+                <input type="text" id="id" name="id" class="form-control" value="${model.getForm().id}"
                        placeholder="user1"/>
             </tag:bs_input>
             <tag:bs_input key="password" label="password">
-                <input type="password" id="password" name="password" class="form-control" value="${model.form.password}" 
+                <input type="password" id="password" name="password" class="form-control" value="${it.getForm().password}" 
                        placeholder="user1"/>
             </tag:bs_input>
         </div>

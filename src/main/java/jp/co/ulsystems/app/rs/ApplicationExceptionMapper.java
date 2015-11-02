@@ -2,13 +2,15 @@ package jp.co.ulsystems.app.rs;
 
 
 import javax.annotation.Priority;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Priorities;
+import javax.ws.rs.container.ResourceContext;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
+import org.glassfish.jersey.server.ExtendedUriInfo;
+import org.glassfish.jersey.server.model.Parameter;
+import org.glassfish.jersey.server.model.ResourceMethod;
 import org.glassfish.jersey.server.mvc.spi.AbstractErrorTemplateMapper;
 /**
  * アプリケーション例外から、
@@ -21,7 +23,10 @@ import org.glassfish.jersey.server.mvc.spi.AbstractErrorTemplateMapper;
 public class ApplicationExceptionMapper extends AbstractErrorTemplateMapper<ApplicationException> {
 
     @Context
-    private HttpServletRequest req;
+    private ResourceContext rc;
+    
+    @Inject
+    private ExtendedUriInfo info;
     
     @Override
     protected Response.Status getErrorStatus(ApplicationException throwable) {
@@ -31,9 +36,17 @@ public class ApplicationExceptionMapper extends AbstractErrorTemplateMapper<Appl
     @Override
     protected Object getErrorModel(ApplicationException e) {
         Model model = new Model();
+        
+        
+        ResourceMethod m = info.getMatchedResourceMethod();
+        for (Parameter param : m.getInvocable().getParameters()) {
+            if(param.getAnnotation(SaveForm.class) != null) {
+                model.setForm(rc.getResource((Class)param.getType()));
+            }
+        }
+        
         model.getErrors().put(e.getKey(), e.getMessage());
         
-        model.putAll(req.getParameterMap());
         
         return model;
     }

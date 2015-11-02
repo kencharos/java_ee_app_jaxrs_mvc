@@ -19,6 +19,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
     
     @Override
     public void filter(ContainerRequestContext context) {
+       
         // ログインリクエスト以外で継続セッションが取得できない場合はエラーとする。
         if(!context.getUriInfo().getPath().endsWith("login") && req.getSession(false) == null) {
             context.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity("not login").build());
