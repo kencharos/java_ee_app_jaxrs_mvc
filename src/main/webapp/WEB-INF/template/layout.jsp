@@ -15,7 +15,7 @@
                     <a class="navbar-brand" href="${ctx}/login">JAX-RS-Jersey MVC sample</a>
                 </div>
                 
-                <c:if test="${user ne null}">
+                    <c:if test="${user.name ne null}">
                 <div class="navbar-form navbar-right">
                     <a href="${ctx}/logout" class="btn btn-default">logout</a>
                 </div>

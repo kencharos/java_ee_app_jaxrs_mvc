@@ -5,7 +5,7 @@
 <c:import url="/WEB-INF/template/layout.jsp">
 <c:param name="title" value="Login Success"/>
 <c:param name="content">
-    <h1>Hello ${user}</h1>
+    <h1>Hello ${user.name}</h1>
     
     <h2>Notificaions</h2>
     <ul>
